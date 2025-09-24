@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yayasan Berkah Sihati Kediri - Metode Tilawati</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --secondary: #ff9800;
+            --secondary-light: #ffb74d;
+            --secondary-dark: #f57c00;
+            --accent: #2196f3;
+            --accent-light: #64b5f6;
+            --text: #212121;
+            --text-light: #757575;
+            --background: #fafafa;
+            --surface: #ffffff;
+            --error: #f44336;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --info: #2196f3;
+            --radius: 12px;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--primary);
+            background: white;
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 5px;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        .logo-text .yayasan {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .logo-text .berkah {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-top: -5px;
+        }
+
+        .logo-text .sihati-kediri {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-top: -3px;
+        }
+
+        /* Navigation Styles */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: var(--transition);
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+
+        nav a:hover:after, nav a.active:after {
+            width: 80%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 5px;
+            transition: var(--transition);
+            position: relative;
+            transform-origin: center;
+        }
+
+        /* Page Styles */
+        .page {
+            display: none;
+            padding: 6rem 0 3rem;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(img/logo\ jadi.png);
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0));
+            transform: rotate(30deg);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card:hover:before {
+            width: 8px;
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--secondary-light);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(46, 125, 50, 0.4);
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+            background: linear-gradient(135deg, var(--secondary-light) 0%, var(--secondary) 100%);
+        }
+
+        /* Image Section */
+        .image-section {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .page-image {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin: 0 auto;
+        }
+
+        .image-caption {
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        /* Enhanced Content Sections with Icons */
+        .feature-list {
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .feature-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .mission-card {
+            background: rgba(46, 125, 50, 0.05);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+
+        .mission-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .mission-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .advantage-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .advantage-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 152, 0, 0.05);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .advantage-icon {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            width: 50px;
+            text-align: center;
+        }
+
+        /* Donation Section */
+        .donation-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .donation-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 100%;
+        }
+
+        .donation-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .donation-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .donation-form {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            margin: 2rem 0;
+        }
+
+        .payment-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-option {
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius);
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .payment-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(46, 125, 50, 0.05);
+        }
+
+        .payment-option img {
+            max-width: 80px;
+            max-height: 40px;
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-option i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* QRIS Modal */
+        .qris-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qris-modal.active {
+            display: flex;
+        }
+
+        .qris-content {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+
+        .qris-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .qris-image {
+            width: 200px;
+            height: 200px;
+            margin: 1rem auto;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+        }
+
+        .qris-image img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .qris-instruction {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Building Goals Section */
+        .building-goals {
+            margin: 3rem 0;
+        }
+
+        .goal-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(46, 125, 50, 0.05);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary);
+        }
+
+        .goal-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Donors List */
+        .donors-list {
+            margin-top: 2rem;
+        }
+
+        .donor-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+        }
+
+        .donor-item:hover {
+            background-color: rgba(46, 125, 50, 0.05);
+        }
+
+        .donor-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .donor-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .donor-date {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .donor-amount {
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-light);
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+        }
+
+        .contact-info {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-info i {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            width: 24px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .donation-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .page-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Hamburger Menu Styles */
+            .hamburger {
+                display: flex;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--surface);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                z-index: 999;
+                padding: 80px 20px 20px;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav a {
+                display: block;
+                padding: 1rem;
+                border-radius: var(--radius);
+            }
+            
+            nav a:hover, nav a.active {
+                background: rgba(46, 125, 50, 0.1);
+            }
+            
+            nav a:after {
+                display: none;
+            }
+            
+            .header-content {
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .page-image {
+                height: 250px;
+            }
+            
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .advantage-list {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Logo Responsif */
+            .logo-img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .logo-text .yayasan {
+                font-size: 1rem;
+            }
+            
+            .logo-text .berkah {
+                font-size: 1.4rem;
+            }
+            
+            .logo-text .sihati-kediri {
+                font-size: 1.2rem;
+            }
+            
+            /* Close icon for mobile menu */
+            .close-menu {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: var(--text);
+                cursor: pointer;
+            }
+
+            .donor-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Futuristic Elements */
+        .glow {
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleAnimation 10s linear infinite;
+        }
+
+        @keyframes particleAnimation {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            width: 35%;
+            position: relative;
+            transition: width 1s ease;
+        }
+
+        .progress:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-image: linear-gradient(
+                -45deg, 
+                rgba(255, 255, 255, 0.2) 25%, 
+                transparent 25%, 
+                transparent 50%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                rgba(255, 255, 255, 0.2) 75%, 
+                transparent 75%, 
+                transparent
+            );
+            z-index: 1;
+            background-size: 20px 20px;
+            animation: move 2s linear infinite;
+        }
+
+        @keyframes move {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 20px 20px;
+            }
+        }
+        
+        /* Overlay for mobile menu */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 998;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-img">
+                    <!-- Logo Yayasan Berkah Sihati Kediri -->
+                    <img src="img/yayasan.jpg" alt="Logo Yayasan Berkah Sihati Kediri">
+                </div>
+                <div class="logo-text">
+                    <span class="yayasan">Yayasan</span>
+                    <span class="berkah">Berkah Sihati</span>
+                    <span class="sihati-kediri">Kediri</span>
+                </div>
+            </div>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <nav id="nav">
+                
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home">Beranda</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">Tentang</a></li>
+                    <li><a href="#" class="nav-link" data-page="method">Tilawati</a></li>
+                    <li><a href="#" class="nav-link" data-page="donation">Donasi</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Kontak</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Overlay for mobile menu -->
+            <div class="overlay" id="overlay"></div>
+        </div>
+    </header>
+
+    <!-- QRIS Modal -->
+    <div class="qris-modal" id="qris-modal">
+        <div class="qris-content">
+            <span class="qris-close" id="qris-close">&times;</span>
+            <h3 id="qris-title">QRIS Pembayaran</h3>
+            <div class="qris-image" id="qris-image">
+                <!-- QRIS image will be inserted here -->
+            </div>
+            <p id="qris-description">Scan QR code di atas untuk melakukan pembayaran</p>
+            <p class="qris-instruction">Setelah pembayaran berhasil, silakan konfirmasi ke nomor: 0812-3456-7890</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <div class="particles" id="particles"></div>
+                <div class="hero-content">
+                    <h1>Yayasan Berkah Sihati Kediri</h1>
+                    <p>Menyebarkan Cahaya Al-Quran melalui Metode Tilawati untuk Masyarakat Kabupaten Kediri</p>
+                    <a href="#" class="btn nav-link" data-page="donation"><i class="fas fa-donate"></i> Donasi Sekarang</a>
+                </div>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h2>Metode Tilawati</h2>
+                    <p>Metode pembelajaran Al-Quran yang efektif dan menyenangkan dengan pendekatan individual dan teknik baca simak.</p>
+                    <a href="#" class="btn nav-link" data-page="method"><i class="fas fa-book-open"></i> Pelajari Lebih Lanjut</a>
+                </div>
+                
+                <div class="card">
+                    <h2>Program Kami</h2>
+                    <p>Kami menyelenggarakan berbagai program pembelajaran Al-Quran untuk semua usia dengan sistem yang terstruktur.</p>
+                    <a href="#" class="btn nav-link" data-page="about"><i class="fas fa-chalkboard-teacher"></i> Lihat Program</a>
+                </div>
+                
+                <div class="card">
+                    <h2>Donasi & Pembangunan</h2>
+                    <p>Bantu kami membangun gedung pembelajaran yang layak untuk meningkatkan kualitas pendidikan Al-Quran di Kediri.</p>
+                    <a href="#" class="btn nav-link" data-page="donation"><i class="fas fa-hand-holding-heart"></i> Donasi Sekarang</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="image-section">
+                <img src="img/foto munaqosah.jpg" alt="Kegiatan Yayasan Berkah Sihati Kediri" class="page-image">
+                <p class="image-caption">Kegiatan munaqosah Yayasan Berkah Sihati Kediri</p>
+            </div>
+            
+            <div class="card">
+                <h2>Tentang Yayasan Berkah Sihati Kediri</h2>
+                <p>Yayasan Berkah Sihati Kediri adalah lembaga yang bergerak dalam bidang pendidikan Al-Quran dengan fokus pada penerapan Metode Tilawati di Kabupaten Kediri. Kami berkomitmen untuk meningkatkan kualitas membaca dan memahami Al-Quran bagi masyarakat.</p>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Visi Kami</h3>
+                            <p>Menjadi pusat pembelajaran Al-Quran terdepan di Kabupaten Kediri yang mencetak generasi Qur'ani yang fasih dalam membaca dan memahami Al-Quran.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Misi Kami</h3>
+                <div class="mission-grid">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h4>Menyebarluaskan Metode</h4>
+                        <p>Menyebarluaskan Metode Tilawati sebagai metode pembelajaran Al-Quran yang efektif</p>
+                    </div>
+                    
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <h4>Menyediakan Sarana</h4>
+                        <p>Menyediakan sarana dan prasarana yang memadai untuk pembelajaran Al-Quran</p>
+                    </div>
+                    
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h4>Mencetak Pengajar</h4>
+                        <p>Mencetak para penghafal dan pengajar Al-Quran yang kompeten</p>
+                    </div>
+                    
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4>Memberikan Akses</h4>
+                        <p>Memberikan akses pembelajaran Al-Quran untuk semua kalangan masyarakat</p>
+                    </div>
+                </div>
+                
+                <h3>Struktur Kepengurusan</h3>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Ketua Yayasan</h4>
+                        <p><strong>Siswanto, S.Pd.</strong> - Memimpin dan mengawasi seluruh kegiatan yayasan</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Kepala Cabang</h4>
+                        <p><strong>Moh. Nasrulloh Al-Hariisi, S.Pd.I.</strong> - Mengelola operasional cabang di Kediri</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Method Page -->
+        <section id="method" class="page">
+            <div class="image-section">
+                <img src="img/foto sampel ngaji.jpg" alt="Metode Tilawati" class="page-image">
+                <p class="image-caption">Proses pembelajaran menggunakan Metode Tilawati</p>
+            </div>
+            
+            <div class="card">
+                <h2>Metode Tilawati</h2>
+                <p>Metode Tilawati adalah suatu metode belajar membaca Al-Quran yang dilengkapi dengan strategi pembelajaran dengan kebenaran membaca melalui pendekatan individual dengan teknik baca simak.</p>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Pendekatan Individual</h3>
+                            <p>Setiap santri mendapatkan perhatian khusus sesuai dengan kemampuan dan kecepatan belajarnya masing-masing.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-ear-listen"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Teknik Baca Simak</h3>
+                            <p>Santri membaca sementara guru menyimak untuk memastikan ketepatan bacaan sesuai kaidah tajwid.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Keunggulan Metode Tilawati</h3>
+                <div class="advantage-list">
+                    <div class="advantage-item">
+                        <div class="advantage-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <div>
+                            <h4>Pendekatan Individual</h4>
+                            <p>Memperhatikan kemampuan masing-masing santri</p>
+                        </div>
+                    </div>
+                    
+                    <div class="advantage-item">
+                        <div class="advantage-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h4>Teknik Baca Simak</h4>
+                            <p>Memastikan ketepatan bacaan</p>
+                        </div>
+                    </div>
+                    
+                    <div class="advantage-item">
+                        <div class="advantage-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div>
+                            <h4>Target Jelas</h4>
+                            <p>Kualitas dan waktu yang terukur</p>
+                        </div>
+                    </div>
+                    
+                    <div class="advantage-item">
+                        <div class="advantage-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div>
+                            <h4>Sistem Klasikal</h4>
+                            <p>Dengan bimbingan guru yang berpengalaman</p>
+                        </div>
+                    </div>
+                    
+                    <div class="advantage-item">
+                        <div class="advantage-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div>
+                            <h4>Materi Sistematis</h4>
+                            <p>Mudah dipahami dan diajarkan</p>
+                        </div>
+                    </div>
+                    
+                    <div class="advantage-item">
+                        <div class="advantage-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div>
+                            <h4>Hasil Terbukti</h4>
+                            <p>Santri lancar membaca Al-Quran</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Target Pembelajaran</h3>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-flag-checkered"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Tujuan Utama</h4>
+                        <p>"Santri terbiasa membaca Al-Quran dengan lancar dan fasih serta memahami hukum-hukum bacaan berdasarkan kaidah ilmu tajwid."</p>
+                    </div>
+                </div>
+                
+                <p>Untuk mencapai tujuan tersebut, ditetapkan dua target:</p>
+                <div class="mission-grid">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Target Kualitas</h4>
+                        <p>Memastikan santri mampu membaca Al-Quran dengan benar sesuai kaidah tajwid</p>
+                    </div>
+                    
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Target Waktu</h4>
+                        <p>Menyelesaikan pembelajaran dalam waktu yang telah ditentukan sesuai level</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation Page with Building Information -->
+        <section id="donation" class="page">
+
+            <div class="image-section">
+                <img src="img/cont bangun.jpg" alt="Pembangunan Gedung" class="page-image">
+                <p class="image-caption">Proses Desain pembangunan gedung</p>
+            </div>
+
+            <h1 class="glow" style="text-align: center; margin-bottom: 2rem;">Dukung Pembangunan Gedung Yayasan</h1>
+            
+            <div class="card">
+                <h2>Pembangunan Gedung Yayasan</h2>
+                <p>Yayasan Berkah Sihati Kediri sedang menggalang dana untuk pembangunan gedung yang layak guna menunjang kegiatan pembelajaran Metode Tilawati di Kabupaten Kediri.</p>
+                
+                <h3>Progress Pembangunan</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 75%"></div>
+                </div>
+                
+                <p>Dana terkumpul: <strong class="glow">Rp 100.500.000</strong> dari target <strong>Rp 250.000.000</strong></p>
+                
+                <h3>Tujuan Pembangunan Gedung</h3>
+                <div class="building-goals">
+                    <div class="goal-item">
+                        <div class="goal-number">1</div>
+                        <div class="goal-text">Memberikan fasilitas penunjang kegiatan untuk meningkatkan kualitas pembelajaran Al-Qur'an Metode Tilawati di Kabupaten Kediri</div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-number">2</div>
+                        <div class="goal-text">Meningkatkan aktivitas, kreativitas dan kualitas santri Tilawati</div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-number">3</div>
+                        <div class="goal-text">Membangun semangat belajar Al-Qur'an bagi santri dan Metode Tilawati</div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-number">4</div>
+                        <div class="goal-text">Sebagai sarana ibadah jariyah bersama untuk kemaslahatan dunia akhirat</div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-number">5</div>
+                        <div class="goal-text">Sebagai sarana syi'ar keagamaan di tengah-tengah masyarakat</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 style="text-align: center; margin: 3rem 0 2rem;">Bantu Kami dengan Donasi</h2>
+            
+            <div class="donation-container">
+                <div class="donation-image">
+                    <img src="img/donasi.jpg" alt="Anak-anak belajar mengaji">
+                </div>
+                
+                <div class="donation-form">
+                    <h2>Formulir Donasi</h2>
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" placeholder="Masukkan nama lengkap">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Masukkan alamat email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Nomor Telepon</label>
+                        <input type="tel" id="phone" placeholder="Masukkan nomor telepon">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="amount">Jumlah Donasi</label>
+                        <select id="amount">
+                            <option value="50000">Rp 50.000</option>
+                            <option value="100000">Rp 100.000</option>
+                            <option value="250000">Rp 250.000</option>
+                            <option value="500000">Rp 500.000</option>
+                            <option value="1000000">Rp 1.000.000</option>
+                            <option value="custom">Jumlah Lainnya</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="customAmount" style="display: none;">
+                        <label for="custom-amount">Masukkan Jumlah Donasi</label>
+                        <input type="number" id="custom-amount" placeholder="Masukkan jumlah donasi">
+                    </div>
+
+                    <!-- Metode Pembayaran -->
+                    <div class="payment-methods">
+                        <div class="payment-title">Metode Pembayaran</div>
+                        <div class="payment-options">
+                            <div class="payment-option" data-method="bca" data-qris="BCA">
+                                <i class="fas fa-university"></i>
+                                <div>Transfer Bank BCA</div>
+                            </div>
+                            <div class="payment-option" data-method="bri" data-qris="BRI">
+                                <i class="fas fa-university"></i>
+                                <div>Transfer Bank BRI</div>
+                            </div>
+                            <div class="payment-option" data-method="mandiri" data-qris="Mandiri">
+                                <i class="fas fa-university"></i>
+                                <div>Transfer Bank Mandiri</div>
+                            </div>
+                            <div class="payment-option" data-method="gopay" data-qris="Gopay">
+                                <i class="fas fa-mobile-alt"></i>
+                                <div>Gopay</div>
+                            </div>
+                            <div class="payment-option" data-method="ovo" data-qris="OVO">
+                                <i class="fas fa-mobile-alt"></i>
+                                <div>OVO</div>
+                            </div>
+                            <div class="payment-option" data-method="dana" data-qris="DANA">
+                                <i class="fas fa-wallet"></i>
+                                <div>DANA</div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn" id="show-qris" style="width: 100%; margin-top: 1rem;">
+                            <i class="fas fa-qrcode"></i> Tampilkan QRIS
+                        </button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Pesan (opsional)</label>
+                        <textarea id="message" rows="3" placeholder="Tulis pesan Anda"></textarea>
+                    </div>
+                    
+                    <button type="button" class="btn btn-secondary" id="donate-btn"><i class="fas fa-donate"></i> Donasi Sekarang</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Donatur Terbaru</h2>
+                <div class="donors-list" id="donors-list">
+                    <p>Belum ada donasi. Jadilah yang pertama!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <div class="card">
+                <h2>Kontak Kami</h2>
+                <p>Silakan hubungi kami untuk informasi lebih lanjut tentang program pembelajaran atau donasi untuk pembangunan gedung.</p>
+                
+                <div class="grid">
+                    <div>
+                        <h3>Alamat</h3>
+                        <p>Jalan Panglima Polim, RT. 001, RW. 011, Desa Tertek, Kecamatan Pare, Kabupaten Kediri</p>
+                        
+                        <h3>Telepon</h3>
+                        <p>+62 812-3456-7890</p>
+                        
+                        <h3>Email</h3>
+                        <p>info@berkahsihatikediri.org</p>
+                    </div>
+                    
+                    <div>
+                        <h3>Jam Operasional</h3>
+                        <p>Senin - Jumat: 08.00 - 16.00 WIB</p>
+                        <p>Sabtu: 08.00 - 14.00 WIB</p>
+                        <p>Minggu: Libur</p>
+                        
+                        <h3>Sosial Media</h3>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Yayasan Berkah Sihati Kediri</h3>
+                    <p>Menyebarkan Cahaya Al-Quran melalui Metode Tilawati untuk Masyarakat Kabupaten Kediri</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Jl. Panglima Polim, RT.001/RW.011, Tertek, Pare, Kediri</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>+62 812-3456-7890</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@berkahsihatikediri.org</span>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Tautan Cepat</h3>
+                    <p><a href="#" class="nav-link" data-page="home">Beranda</a></p>
+                    <p><a href="#" class="nav-link" data-page="about">Tentang Kami</a></p>
+                    <p><a href="#" class="nav-link" data-page="donation">Donasi & Pembangunan</a></p>
+                    <p><a href="#" class="nav-link" data-page="contact">Kontak</a></p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 Yayasan Berkah Sihati Kediri. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Hide all pages
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                
+                // Show the selected page
+                const pageId = this.getAttribute('data-page');
+                document.getElementById(pageId).classList.add('active');
+                
+                // Close mobile menu if open
+                closeMobileMenu();
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        });
+        
+        // Custom donation amount toggle
+        const amountSelect = document.getElementById('amount');
+        const customAmount = document.getElementById('customAmount');
+        
+        amountSelect.addEventListener('change', function() {
+            if (this.value === 'custom') {
+                customAmount.style.display = 'block';
+            } else {
+                customAmount.style.display = 'none';
+            }
+        });
+        
+        // Payment method selection
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        let selectedPaymentMethod = '';
+        
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                
+                // Store selected payment method
+                selectedPaymentMethod = this.getAttribute('data-method');
+            });
+        });
+        
+        // QRIS Modal functionality
+        const qrisModal = document.getElementById('qris-modal');
+        const qrisClose = document.getElementById('qris-close');
+        const showQrisBtn = document.getElementById('show-qris');
+        const qrisTitle = document.getElementById('qris-title');
+        const qrisImage = document.getElementById('qris-image');
+        const qrisDescription = document.getElementById('qris-description');
+        
+        // QRIS data
+        const qrisData = {
+            'bca': {
+                title: 'QRIS Bank BCA',
+                description: 'Scan QR code untuk transfer via Bank BCA',
+                image: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BCA-1234567890-YAYASAN-BERKAH-SIHATI'
+            },
+            'bri': {
+                title: 'QRIS Bank BRI',
+                description: 'Scan QR code untuk transfer via Bank BRI',
+                image: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BRI-9876543210-YAYASAN-BERKAH-SIHATI'
+            },
+            'mandiri': {
+                title: 'QRIS Bank Mandiri',
+                description: 'Scan QR code untuk transfer via Bank Mandiri',
+                image: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=MANDIRI-5678901234-YAYASAN-BERKAH-SIHATI'
+            },
+            'gopay': {
+                title: 'QRIS Gopay',
+                description: 'Scan QR code untuk pembayaran via Gopay',
+                image: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=GOPAY-08123456789-YAYASAN-BERKAH-SIHATI'
+            },
+            'ovo': {
+                title: 'QRIS OVO',
+                description: 'Scan QR code untuk pembayaran via OVO',
+                image: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=OVO-08123456789-YAYASAN-BERKAH-SIHATI'
+            },
+            'dana': {
+                title: 'QRIS DANA',
+                description: 'Scan QR code untuk pembayaran via DANA',
+                image: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=DANA-08123456789-YAYASAN-BERKAH-SIHATI'
+            }
+        };
+        
+        showQrisBtn.addEventListener('click', function() {
+            if (!selectedPaymentMethod) {
+                alert('Silakan pilih metode pembayaran terlebih dahulu');
+                return;
+            }
+            
+            const qris = qrisData[selectedPaymentMethod];
+            qrisTitle.textContent = qris.title;
+            qrisDescription.textContent = qris.description;
+            qrisImage.innerHTML = `<img src="${qris.image}" alt="QRIS ${selectedPaymentMethod}">`;
+            
+            qrisModal.classList.add('active');
+        });
+        
+        qrisClose.addEventListener('click', function() {
+            qrisModal.classList.remove('active');
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === qrisModal) {
+                qrisModal.classList.remove('active');
+            }
+        });
+        
+        // Donation functionality
+        const donateBtn = document.getElementById('donate-btn');
+        const donorsList = document.getElementById('donors-list');
+        
+        // Sample initial donors data
+        const initialDonors = [
+            { name: "Ahmad Subagyo", amount: 500000, date: "2023-11-15" },
+            { name: "Siti Rahayu", amount: 250000, date: "2023-11-14" },
+            { name: "Budi Santoso", amount: 1000000, date: "2023-11-13" },
+            { name: "Maya Indah", amount: 750000, date: "2023-11-12" }
+        ];
+        
+        // Function to format date
+        function formatDate(dateString) {
+            const options = { day: '2-digit', month: 'long', year: 'numeric' };
+            return new Date(dateString).toLocaleDateString('id-ID', options);
+        }
+        
+        // Function to format currency
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(amount);
+        }
+        
+        // Function to display donors
+        function displayDonors(donors) {
+            if (donors.length === 0) {
+                donorsList.innerHTML = '<p>Belum ada donasi. Jadilah yang pertama!</p>';
+                return;
+            }
+            
+            donorsList.innerHTML = '';
+            donors.forEach(donor => {
+                const donorItem = document.createElement('div');
+                donorItem.classList.add('donor-item');
+                donorItem.innerHTML = `
+                    <div class="donor-info">
+                        <div class="donor-name">${donor.name}</div>
+                        <div class="donor-date">${formatDate(donor.date)}</div>
+                    </div>
+                    <div class="donor-amount">${formatCurrency(donor.amount)}</div>
+                `;
+                donorsList.appendChild(donorItem);
+            });
+        }
+        
+        // Initialize with sample donors
+        displayDonors(initialDonors);
+        
+        donateBtn.addEventListener('click', function() {
+            const name = document.getElementById('name').value || 'Anonim';
+            let amount = document.getElementById('amount').value;
+            
+            if (amount === 'custom') {
+                amount = document.getElementById('custom-amount').value;
+            }
+            
+            if (!amount || amount <= 0) {
+                alert('Silakan masukkan jumlah donasi yang valid.');
+                return;
+            }
+            
+            if (!selectedPaymentMethod) {
+                alert('Silakan pilih metode pembayaran.');
+                return;
+            }
+            
+            // Format amount as number
+            amount = parseInt(amount);
+            
+            // Get current date
+            const now = new Date();
+            const donationDate = now.toISOString().split('T')[0];
+            
+            // Create new donor object
+            const newDonor = {
+                name: name,
+                amount: amount,
+                date: donationDate,
+                method: selectedPaymentMethod
+            };
+            
+            // Add to donors list (at the beginning)
+            initialDonors.unshift(newDonor);
+            
+            // Update donors display
+            displayDonors(initialDonors);
+            
+            // Update progress bar
+            const currentAmount = 87500000 + amount;
+            const progressPercentage = (currentAmount / 250000000) * 100;
+            document.querySelector('.progress').style.width = `${progressPercentage}%`;
+            document.querySelector('.progress-bar + p').innerHTML = `Dana terkumpul: <strong class="glow">${formatCurrency(currentAmount)}</strong> dari target <strong>Rp 250.000.000</strong>`;
+            
+            // Show thank you message with payment instructions
+            const paymentMethods = {
+                'bca': 'Transfer ke BCA 1234-5678-90 a.n Yayasan Berkah Sihati Kediri',
+                'bri': 'Transfer ke BRI 9876-5432-10 a.n Yayasan Berkah Sihati Kediri',
+                'mandiri': 'Transfer ke Mandiri 5678-1234-56 a.n Yayasan Berkah Sihati Kediri',
+                'gopay': 'Gopay ke nomor 0812-3456-7890 a.n Yayasan Berkah Sihati',
+                'ovo': 'OVO ke nomor 0812-3456-7890 a.n Yayasan Berkah Sihati',
+                'dana': 'DANA ke nomor 0812-3456-7890 a.n Yayasan Berkah Sihati'
+            };
+            
+            alert(`Terima kasih ${name} atas donasi sebesar ${formatCurrency(amount)}!\n\nSilakan lakukan pembayaran melalui:\n${paymentMethods[selectedPaymentMethod]}\n\nKonfirmasi pembayaran ke: 0812-3456-7890`);
+            
+            // Reset form
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('amount').value = '50000';
+            document.getElementById('custom-amount').value = '';
+            document.getElementById('message').value = '';
+            customAmount.style.display = 'none';
+            
+            // Reset payment method
+            paymentOptions.forEach(opt => opt.classList.remove('selected'));
+            selectedPaymentMethod = '';
+        });
+        
+        // Create particles for hero section
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 5 + 2;
+                const posX = Math.random() * 100;
+                const delay = Math.random() * 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Mobile menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+        const closeMenu = document.getElementById('close-menu');
+        const overlay = document.getElementById('overlay');
+        
+        function openMobileMenu() {
+            nav.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            nav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        hamburger.addEventListener('click', openMobileMenu);
+        closeMenu.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+        
+        // Close menu when clicking on nav links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+        
+        // Initialize when page loads
+        window.addEventListener('load', function() {
+            createParticles();
+        });
+    </script>
+</body>
+</html>
